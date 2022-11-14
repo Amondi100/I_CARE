@@ -1,104 +1,98 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:i_care/screens/sign_up.dart';
+import 'package:i_care/utils/app_const.dart';
 
-class Login extends StatelessWidget {
-  const Login({Key? key}) : super(key: key);
+class IntroPage extends StatelessWidget {
+  const IntroPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: Get.size.width,
-        height: MediaQuery.of(context).size.height,
-        padding: EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Container(
-                height: Get.size.height * .3,
-                width: Get.size.width * 0.3,
-                child: Column(children: [
-                  Text(
-                    "Login",
-                  ),
-                  const TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  )
-                ]),
+      appBar: AppBar(
+        backgroundColor: AppConst.primaryColor,
+        title: Text(
+          "FORTITUDE",
+          style: TextStyle(
+              fontSize: 32,
+              fontWeight: FontWeight.bold,
+              fontStyle: FontStyle.italic),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(top: 60.0),
+              child: Center(
+                child: Container(
+                    width: 200,
+                    height: 150,
+                    /*decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(50.0)),*/
+                    child: Image.asset('images/whiteheart.jpg')),
               ),
-              //'Adding Space '/
-              SizedBox(
-                height: 18,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Email',
+                    hintText: 'Enter valid email id as abc@gmail.com'),
               ),
-              //"text "/
-              Text(
-                "Login",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline5!
-                    .copyWith(fontWeight: FontWeight.bold, letterSpacing: 1.2),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 15.0, right: 15.0, top: 15, bottom: 0),
+              //padding: EdgeInsets.symmetric(horizontal: 15),
+              child: TextField(
+                obscureText: true,
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                    hintText: 'Enter secure password'),
               ),
-
-              //"Adding Space"
-              SizedBox(
-                height: 30,
+            ),
+            FlatButton(
+              onPressed: () {
+                //FORGOT PASSWORD SCREEN GOES HERE
+              },
+              child: Text(
+                'Forgot Password',
+                style: TextStyle(color: Colors.white, fontSize: 15),
               ),
-
-              //"Our Custom Text Field"/
-              //TxtField(
-              //inputType: TextInputType.emailAddress,
-              //hintText: 'Email',
-              //obscureText: false),
-
-              //"Adding Space"/
-              SizedBox(height: 16),
-
-              //"Our Custom Text Field"/
-              // TxtField(
-              // inputType: TextInputType.text,
-              // hintText: 'Password',
-              // obscureText: true),
-
-              //"Adding Space"/
-              SizedBox(height: 10),
-
-              //"A row with a button at the end"/
-
-              //"Adding Space"/
-              SizedBox(
-                height: 10,
-              ),
-
-              //"custom button"/
-              // Btn(
-              // text: 'Login',
-              // onPressed: () {
-              // Get.to(() => ViewCourses());
-              // },
-
-              //space
-              SizedBox(
-                height: 25,
-              ),
-              InkWell(
-                onTap: () {
-                  Get.to(() => SignUp());
+            ),
+            Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: AppConst.primaryColor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: FlatButton(
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => SignUp()));
                 },
-                child: RichText(
-                    text: TextSpan(
-                        text: "Don\'t have an account?",
-                        style: TextStyle(color: Colors.black87),
-                        children: <TextSpan>[
-                      TextSpan(
-                          text: " Sign up",
-                          style:
-                              TextStyle(color: Color.fromRGBO(230, 88, 62, 1)))
-                    ])),
-              )
-            ],
-          ),
+                child: Text(
+                  'Login',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 130,
+            ),
+            Text(
+              'New User? Create Account',
+              style: TextStyle(color: AppConst.primaryColor),
+            ),
+          ],
         ),
       ),
     );
