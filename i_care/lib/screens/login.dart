@@ -1,24 +1,37 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:i_care/screens/dashboard.dart';
 import 'package:i_care/screens/sign_up.dart';
 import 'package:i_care/utils/app_const.dart';
+import 'package:i_care/utils/utils.dart';
 
-class IntroPage extends StatelessWidget {
-  const IntroPage({Key? key}) : super(key: key);
+import '../controllers/auth_controller.dart';
 
+class IntroPage extends StatefulWidget {
+  const IntroPage({Key? key});
+
+  @override
+  State<IntroPage> createState() => _IntroPageState();
+}
+
+class _IntroPageState extends State<IntroPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppConst.primaryColor,
-        title: Text(
-          "FORTITUDE",
-          style: TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              fontStyle: FontStyle.italic),
-        ),
-      ),
+      // appBar: AppBar(
+      // backgroundColor: AppConst.primaryColor,
+      // title: Text(
+      // "FORTITUDE",
+      // style: TextStyle(
+      // fontSize: 32,
+      // fontWeight: FontWeight.bold,
+      // fontStyle: FontStyle.italic),
+      // ),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -41,11 +54,15 @@ class IntroPage extends StatelessWidget {
               //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Email',
                     hintText: 'Enter valid email id as abc@gmail.com'),
+                controller: _emailController,
               ),
+            ),
+            SizedBox(
+              height: 35,
             ),
             Padding(
               padding: const EdgeInsets.only(
@@ -53,45 +70,45 @@ class IntroPage extends StatelessWidget {
               //padding: EdgeInsets.symmetric(horizontal: 15),
               child: TextField(
                 obscureText: true,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
                     hintText: 'Enter secure password'),
+                controller: _passwordController,
               ),
             ),
-            FlatButton(
-              onPressed: () {
-                //FORGOT PASSWORD SCREEN GOES HERE
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50)),
+              onPressed: () async {
+                if (_emailController.text.trim().isEmpty ||
+                    !_emailController.text.trim().isEmail) {
+                  Utils.showError("Please Enter valid email!");
+                } else if (_passwordController.text.trim().isEmpty) {
+                  Utils.showError("No field should be empty!");
+                } else {
+                  await AuthController.to.login(_emailController.text.trim(),
+                      _passwordController.text.trim());
+                }
               },
-              child: Text(
-                'Forgot Password',
-                style: TextStyle(color: Colors.white, fontSize: 15),
-              ),
+              child: const Text("Login"),
             ),
-            Container(
-              height: 50,
-              width: 250,
-              decoration: BoxDecoration(
-                  color: AppConst.primaryColor,
-                  borderRadius: BorderRadius.circular(20)),
-              child: FlatButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => SignUp()));
-                },
-                child: Text(
-                  'Login',
-                  style: TextStyle(color: Colors.white, fontSize: 25),
-                ),
-              ),
+            const SizedBox(
+              height: 20,
             ),
-            SizedBox(
-              height: 130,
-            ),
-            Text(
-              'New User? Create Account',
-              style: TextStyle(color: AppConst.primaryColor),
-            ),
+            Text.rich(
+                // ignore: prefer_const_literals_to_create_immutables
+                TextSpan(
+                    text: 'Don\'t have an account? ',
+                    children: <InlineSpan>[
+                  TextSpan(
+                      text: 'Sign Up',
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Get.to(() => SignUp());
+                        })
+                ])),
           ],
         ),
       ),

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "418332895051",
+    "project_id": "fortitude-46253",
+    "storage_bucket": "fortitude-46253.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418332895051:android:5af5287714dbf4c53b2ace",
+        "android_client_info": {
+          "package_name": "com.example.i_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418332895051-gd8c09886cuef6bggtflfbmmjocppqto.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJV-r-CJgiHst7MRSNbWGeJGlOBqqyHCc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418332895051-gd8c09886cuef6bggtflfbmmjocppqto.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
