@@ -98,7 +98,34 @@ class BookAppointment extends StatelessWidget {
                             MaterialPageRoute(builder: (_) => Diary()));
                       },
                     )),
+                    SizedBox(
+                      width: 20,
+                    ),
+                    //third item
+                    Expanded(
+                        child: Dashboard3Card(
+                      img: "images/emergency.jpg",
+                      title: "Emergency visits",
+                      onClicked: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (_) => Diary()));
+                      },
+                    )),
                   ],
+                ),
+                SizedBox(height: 20),
+                Center(
+                  child: Text('Book a doctor',
+                      style: TextStyle(
+                          color: AppConst.primaryColor,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold)),
+                ),
+                Container(
+                  width: Get.width * 0.1,
+                  height: Get.height * 0.1,
+                  color: Colors.white,
+                  margin: EdgeInsets.symmetric(vertical: 10, horizontal: 9),
                 ),
               ],
             ),

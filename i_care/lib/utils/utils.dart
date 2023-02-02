@@ -80,7 +80,7 @@ class Utils {
                   Text(
                     "$message",
                     style: TextStyle(
-                        color: Colors.red,
+                        color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 18),
                   ),

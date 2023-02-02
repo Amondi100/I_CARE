@@ -77,8 +77,13 @@ class _IntroPageState extends State<IntroPage> {
                 controller: _passwordController,
               ),
             ),
+            SizedBox(
+              height: 30,
+            ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50)),
+              style: ElevatedButton.styleFrom(
+                  primary: AppConst.primaryColor,
+                  minimumSize: Size.fromHeight(50)),
               onPressed: () async {
                 if (_emailController.text.trim().isEmpty ||
                     !_emailController.text.trim().isEmail) {
@@ -103,7 +108,9 @@ class _IntroPageState extends State<IntroPage> {
                   TextSpan(
                       text: 'Sign Up',
                       style: const TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.bold),
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppConst.primaryColor),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Get.to(() => SignUp());

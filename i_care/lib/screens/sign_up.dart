@@ -47,25 +47,12 @@ class _SignUpState extends State<SignUp> {
               child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'First Name',
-                    hintText: 'Enter your first name'),
+                    labelText: 'Name',
+                    hintText: 'Enter your name'),
                 controller: _nameController,
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              //padding: const EdgeInsets.only(left:15.0,right: 15.0,top:0,bottom: 0),
-              padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Surname',
-                    hintText: 'Enter your surname'),
-                controller: _nameController,
-              ),
-            ),
+
             SizedBox(
               height: 20,
             ),
@@ -96,41 +83,29 @@ class _SignUpState extends State<SignUp> {
                 controller: _passwordController,
               ),
             ),
+
             SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Confirm Password',
-                    hintText: 'Enter secure password'),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 15.0, right: 15.0, top: 15, bottom: 0),
-              //padding: EdgeInsets.symmetric(horizontal: 15),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Preferred Name',
-                    hintText: 'Enter the name you want to be referred with'),
-                controller: _nameController,
-              ),
-            ),
+            // Padding(
+            // padding: const EdgeInsets.only(
+            // left: 15.0, right: 15.0, top: 15, bottom: 0),
+            //padding: EdgeInsets.symmetric(horizontal: 15),
+            // child: TextField(
+            // obscureText: true,
+            // decoration: InputDecoration(
+            // border: OutlineInputBorder(),
+            // labelText: 'Preferred Name',
+            // hintText: 'Enter the name you want to be referred with'),
+            // controller: _nameController,
+            // ),
+            // ),
             // ignore: deprecated_member_use
             const SizedBox(height: 30),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50)),
+              style: ElevatedButton.styleFrom(
+                  minimumSize: Size.fromHeight(50),
+                  primary: AppConst.primaryColor),
               onPressed: () async {
                 if (_emailController.text.trim().isEmpty ||
                     !_emailController.text.trim().isEmail) {
@@ -157,9 +132,11 @@ class _SignUpState extends State<SignUp> {
                     text: 'Already have an account? ',
                     children: <InlineSpan>[
                   TextSpan(
-                      text: 'Sign In',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      text: 'Login',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: AppConst.primaryColor),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Get.to(() => IntroPage());
